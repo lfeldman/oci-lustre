@@ -1,15 +1,11 @@
-###
-## Variables.tf for Terraform
-###
-
-
-# 2OSS_cluster in PHX AD-2 - INTZAC*
-# 4OSS_cluster in PHX AD-3 - INTZAC*
-/*
-variable "AD" {
-  default = "2"
-}
-*/
+# Variables required by the OCI Provider only when running Terraform CLI with standard user based Authentication
+variable "user_ocid" {}
+variable "fingerprint" {}
+variable "private_key_path" {}
+variable "region" {}
+variable "tenancy_ocid" {}
+variable "compartment_ocid" {}
+variable "availablity_domain_name" {}
 
 variable "vpc_cidr" {
   default = "10.0.0.0/16"
@@ -68,30 +64,7 @@ variable "scripts_directory" { default = "scripts" }
 locals {
   mds_dual_nics = (length(regexall("^BM", var.lustre_mds_server_shape)) > 0 ? true : false)
   oss_dual_nics = (length(regexall("^BM", var.lustre_oss_server_shape)) > 0 ? true : false)
-
-  # If ad_number is non-negative use it for AD lookup, else use ad_name.
-  # Allows for use of ad_number in TF deploys, and ad_name in ORM.
-  # Use of max() prevents out of index lookup call.
-  ad = "${var.ad_number >= 0 ? lookup(data.oci_identity_availability_domains.availability_domains.availability_domains[max(0,var.ad_number)],"name") : var.ad_name}"
 }
-
-
-# Not used for normal terraform apply, added for ORM deployments.
-variable "ad_name" {
-  default = ""
-}
-
-# This is currently used for the TF deployment. Valid values 0,1,2.
-variable "ad_number" {
-  default = "0"
-}
-
-
-
-variable "region" {}
-variable "tenancy_ocid" {}
-variable "compartment_ocid" {}
-variable "ssh_public_key" {}
 
 
 # For instances created using Oracle Linux and CentOS images, the user name opc is created automatically.

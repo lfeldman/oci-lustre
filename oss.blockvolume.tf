@@ -5,11 +5,8 @@ The Universal Permissive License (UPL), Version 1.0
 */
 
 resource "oci_core_volume" "lustre_oss_blockvolume" {
-  #count               = "${var.lustre_oss_count * var.lustre_ost_count}"
   count = var.lustre_oss_count * var.lustre_ost_count
-
-  #availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
-  availability_domain = local.ad
+  availability_domain = var.availablity_domain_name
   compartment_id      = var.compartment_ocid
   display_name        = "lustre-oss${count.index % var.lustre_oss_count + 1}-vol${count.index % var.lustre_ost_count + 1}"
   size_in_gbs         = var.ost_block_volume_size

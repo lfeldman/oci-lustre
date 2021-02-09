@@ -5,11 +5,8 @@ The Universal Permissive License (UPL), Version 1.0
 */
 
 resource "oci_core_volume" "lustre_mds_blockvolume" {
-  count = var.lustre_mds_count * var.lustre_mdt_count #0  #"${var.lustre_mds_count}"
-
-  #availability_domain = "${element(var.availability_domain, count.index)}"
-  #availability_domain = data.oci_identity_availability_domains.ADs.availability_domains[var.AD - 1]["name"]
-  availability_domain = local.ad
+  count = var.lustre_mds_count * var.lustre_mdt_count 
+  availability_domain = var.availablity_domain_name
   compartment_id      = var.compartment_ocid
   display_name        = "lustre-mds${count.index % var.lustre_mds_count + 1}-vol${count.index % var.lustre_mdt_count + 1}"
   size_in_gbs         = var.mdt_block_volume_size
