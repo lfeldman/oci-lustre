@@ -7,11 +7,11 @@ set -x
 # We should allow much larger files to be cached.
 
 # https://lustre.ornl.gov/lustre101-courses/content/C1/L5/LustreTuning.pdf
-lctl set_param osd-ldiskfs.*.read_cache_enable=1
-lctl set_param osd-ldiskfs.*.writethrough_cache_enable=1
+#lctl set_param osd-ldiskfs.*.read_cache_enable=1
+#lctl set_param osd-ldiskfs.*.writethrough_cache_enable=1
 
 # http://doc.lustre.org/lustre_manual.xhtml
-lctl set_param obdfilter.lfsbv-*.brw_size=16
+#lctl set_param obdfilter.lfsbv-*.brw_size=16
 
 
 

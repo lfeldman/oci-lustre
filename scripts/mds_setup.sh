@@ -213,7 +213,7 @@ fi
 mount_point="/mnt/mds${num}_mdt${index}_${disk_type}"
 
 
-#if [ "$mds_dual_nics" = "true" ]; then
+if [ "$mds_dual_nics" = "true" ]; then
   # Add logic to ensure the below is not empty
     cmd=`nslookup ${mgs_fqdn_hostname_nic1} | grep -qi "Name:"`
     while [ $? -ne 0 ];
@@ -222,8 +222,7 @@ mount_point="/mnt/mds${num}_mdt${index}_${disk_type}"
       sleep 10s
       cmd=`nslookup ${mgs_fqdn_hostname_nic1} | grep -qi "Name:"`
     done
-#fi
-
+fi
 
 
 mgs_ip=`nslookup ${mgs_fqdn_hostname_nic1} | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
@@ -242,10 +241,10 @@ if [ -z $mgs_ip ]; then
 fi
 
 
-#mgs_ip=`nslookup ${mgs_fqdn_hostname_nic1} | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
-#if [ -z $mgs_ip ]; then
-#  mgs_ip=`nslookup ${mgs_fqdn_hostname_nic0} | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
-#fi
+mgs_ip=`nslookup ${mgs_fqdn_hostname_nic1} | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
+if [ -z $mgs_ip ]; then
+  mgs_ip=`nslookup ${mgs_fqdn_hostname_nic0} | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
+fi
 
 #mgs_ip=`nslookup ${mgs_hostname_prefix}1 | grep "Address: " | gawk '{ print $2 }'` ; echo $mgs_ip
 mgs_pri_nid=$mgs_ip@tcp1 ;  echo $mgs_pri_nid

@@ -4,7 +4,8 @@ resource "oci_core_vnic_attachment" "mds_secondary_vnic_attachment" {
   #Required
   create_vnic_details {
     #Required
-    subnet_id = oci_core_subnet.publicb[0].id
+#    subnet_id = oci_core_subnet.publicb[0].id
+    subnet_id = oci_core_subnet.privateb[0].id
 
     #Optional
     assign_public_ip = "false"
@@ -29,7 +30,8 @@ resource "oci_core_vnic_attachment" "oss_secondary_vnic_attachment" {
   #Required
   create_vnic_details {
     #Required
-    subnet_id = oci_core_subnet.publicb[0].id
+#    subnet_id = oci_core_subnet.publicb[0].id
+    subnet_id = oci_core_subnet.privateb[0].id
 
     #Optional
     assign_public_ip = "false"

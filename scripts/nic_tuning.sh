@@ -77,7 +77,8 @@ else
     fi
 
     # Update ring parameters to max for NIC-0 on server nodes
-    ethtool -G $primaryNICInterface rx 2047 tx 2047 rx-jumbo 8191
+#    ethtool -G $primaryNICInterface rx 2047 tx 2047 rx-jumbo 8191
+     ethtool -G $primaryNICInterface rx-jumbo 8191
 fi
 
 

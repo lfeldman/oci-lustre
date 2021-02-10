@@ -7,8 +7,8 @@ echo "mds_dual_nics=\"${mds_dual_nics}\"" >> /tmp/env_variables.sh
 echo "oss_dual_nics=\"${oss_dual_nics}\"" >> /tmp/env_variables.sh
 echo "mgs_hostname_prefix_nic0=\"${mgs_hostname_prefix_nic0}\"" >> /tmp/env_variables.sh
 echo "mgs_hostname_prefix_nic1=\"${mgs_hostname_prefix_nic1}\"" >> /tmp/env_variables.sh
-echo "PublicSubnetsFQDN=\"${PublicSubnetsFQDN}\"" >> /tmp/env_variables.sh
-echo "PublicBSubnetsFQDN=\"${PublicBSubnetsFQDN}\"" >> /tmp/env_variables.sh
+#echo "PublicSubnetsFQDN=\"${PublicSubnetsFQDN}\"" >> /tmp/env_variables.sh
+#echo "PublicBSubnetsFQDN=\"${PublicBSubnetsFQDN}\"" >> /tmp/env_variables.sh
 
 
 ## Stop SSHD to prevent remote execution during this process
@@ -48,7 +48,7 @@ cp /etc/resolv.conf /etc/resolv.conf.backup
 rm -f /etc/resolv.conf
 
 # echo "search ${PrivateBSubnetsFQDN} ${PrivateSubnetsFQDN} " > /etc/resolv.conf
-echo "search ${PublicBSubnetsFQDN} ${PublicSubnetsFQDN} " > /etc/resolv.conf
+#echo "search ${PublicBSubnetsFQDN} ${PublicSubnetsFQDN} " > /etc/resolv.conf
 echo "nameserver 169.254.169.254" >> /etc/resolv.conf
 
 

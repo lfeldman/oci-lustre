@@ -11,6 +11,17 @@ variable "vpc_cidr" {
   default = "10.0.0.0/16"
 }
 
+# OS Images
+variable "instance_os" {
+  description = "Operating system for compute instances"
+  default     = "Oracle Linux"
+}
+
+variable "linux_os_version" {
+  description = "Operating system version for all Linux instances"
+  default     = "7.9"
+}
+
 # Bastion
 variable bastion_shape { default = "VM.Standard2.2" }
 variable bastion_node_count { default = 1 }
